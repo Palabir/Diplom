@@ -5,15 +5,14 @@
     <v-flex class="title">
       <h1>{{item.title}}</h1>
       <div class="inf">
-        <p class="inf-date">{{item.dat}},</p>
+        <p class="inf-date">{{item.date}},</p>
         <p class="inf-tag">{{item.tag}}</p>
       </div>
     </v-flex>
     <v-flex class="image">
-      <h1>IMAGE</h1>
       <img :src="item.image" alt="image">
     </v-flex>
-    <v-flex class="article">
+    <v-flex class="c-1-article">
       <h1>{{item.text}}</h1>
 
     </v-flex>
@@ -29,16 +28,24 @@
 
 <script>
 export default {
-  data() {
-    return {
-      item: {
-        title: "ЭТО НАЗВАНИЕ ВНИМАНИЕ ВСЕМ ",
-        date: "24.05.05",
-        tag: "Переводы",
-        image: "/images/Desert.jpg",
-        text: "adadadawdwad"
+  async asyncData({
+      error,
+      app,
+      params
+    }) {
+      const item = await app.$axios.$get(`/api/news/${params.article}`).then(({
+        data
+      }) => {
+        return data
+      }).catch(()=>{
+            return error({
+                statusCode: 404,
+                message: 'Not found'
+            })
+      })
+      return {
+        item
       }
-    }
   },
   methods: {}
 }
@@ -68,6 +75,7 @@ export default {
   border: 1px solid;
   background-color: #424242;
   /* margin-right: 20px; */
+  max-width: 65%;
 }
 
 .title {
@@ -79,12 +87,15 @@ export default {
 
 .image {
   width: 100%;
-  margin-top: -30%;
+  height: 310px;
   border: 1px solid;
   overflow: hidden;
 }
+img {
+    margin-top: -30%;
+}
 
-.article {
+.c-1-article {
   border: 1px solid;
 }
 </style>

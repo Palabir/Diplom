@@ -1,9 +1,13 @@
 'use strict'
 
 const Model = use('Model')
+// const User = use('App/Models/User')
+
+
 
 class User extends Model {
   static boot() {
+    
     super.boot()
 
     /**
@@ -30,5 +34,6 @@ class User extends Model {
     return this.hasMany('App/Models/Token')
   }
 }
+
 
 module.exports = User;

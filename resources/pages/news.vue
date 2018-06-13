@@ -1,91 +1,50 @@
 <template>
-<v-content>
-  <v-container>
-    <v-layout wrap justify-space-around>
-      <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
-        <img src="/images/news.png" alt="news" id="icon">
-        <h2 class="h">Новости</h2>
-      </v-flex>
-      <v-flex class="" xs6>
-        <div class="container">
-          <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
-            <v-card-media :src="item.img" height="150px"></v-card-media>
-            <v-card-title class="title-wrap">{{item.title}}
-            </v-card-title>
-          </v-card>
-        </div>
-        <div class="text-xs-center">
-          <v-pagination :length="3" v-model="page"></v-pagination>
-        </div>
-      </v-flex>
-      <v-flex class="right-cont" xs4>
-        <div class="f-cont">
-            <a v-for="(item,i) in items" :key="i" class="article" href="" :to="'article/' + item.id">
-              <div class="img">
-                <img :src="item.img" alt="" id="icon-2">
-              </div>
-              <div class="p">
-                <p class="r-c-p">{{item.title}}</p>
-              </div>
-            </a>
+<v-container>
+  <v-layout wrap justify-space-around>
+    <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
+      <img src="/images/news.png" alt="news" id="icon">
+      <h2 class="h">Новости</h2>
+    </v-flex>
+    <v-flex class="" xs6>
+      <div class="container">
+        <v-card v-for="(item, i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
+          <v-card-media :src="item.image" height="150px"></v-card-media>
+          <v-card-title class="title-wrap">{{item.title}}
+          </v-card-title>
+        </v-card>
+      </div>
+      <div class="text-xs-center">
+        <v-pagination :length="3" v-model="page"></v-pagination>
+      </div>
+    </v-flex>
+    <v-flex class="right-cont" xs4>
+      <div class="f-cont">
+        <a v-for="(item,i) in items" :key="i" class="article" href="" :to="'article/' + item.id">
+          <div class="img">
+            <img :src="item.img" alt="" id="icon-2">
           </div>
-      </v-flex>
-    </v-layout>
-  </v-container>
-</v-content>
+          <div class="p">
+            <p class="r-c-p">{{item.title}}</p>
+          </div>
+        </a>
+      </div>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
 export default {
   created() {
-    this.$axios.$get('news').then((res) => {
-      return this.item = res.news
+    this.$axios.$get("/api/article").then((res) => {
+      console.log(res.article)
+      return this.items = res.article
     })
   },
   data() {
     return {
+      items: null,
       page: 1,
-      items: [{
-        id: 1,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 2,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 3,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 4,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, ]
     }
   },
   methods: {}
@@ -119,17 +78,14 @@ a:hover {
   /* height: 50px; */
 }
 
-.f-cont {}
-
-.p {}
-
 .r-c-p {
   margin-left: 10px;
   font-size: 15px;
   color: white;
 }
+
 .r-c-p:hover {
-  color:springgreen;
+  color: springgreen;
 }
 
 .article {

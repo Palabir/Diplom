@@ -10,6 +10,10 @@ class UserController {
 
     return 'Logged in successfully'
   }
+
+  async registration ({}) {
+    
+  }
    
   }
 
