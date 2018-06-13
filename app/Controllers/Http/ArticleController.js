@@ -4,12 +4,20 @@ const Database = use('Database')
 const Article = use('App/Models/Article')
 class ArticleController {
     async index({request, response}){
-        const news = await Database.from('news')
-        return  {news}
+        try {
+            const article = await Database.from('news')
+            return  {article}
+        }
+        catch (err) {}
+        
     }
-    async article({request, params, response}){ 
-        const article = await Database.from('news')
-        return {article}
+    async popular({request, response}){
+
+        try{
+            const news = await Database.from('news').where('isPopular', 1)
+            return {news}
+        }
+        catch(err) {}
     }
 }
 

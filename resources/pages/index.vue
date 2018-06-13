@@ -34,54 +34,15 @@
 
 <script>
 export default {
-  created() {
-    this.$axios.$get('news').then((res) => {
-      return this.item = res.news
-    })
-  },
+  // created() {
+  //   this.$axios.$get('api/news').then((res) => {
+  //     console.log(res.data)
+  //     return this.items = res.news
+  //   })
+  // },
   data() {
     return {
-      items: [{
-        id: 1,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 2,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 3,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        id: 4,
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, {
-        title: "Если вы хотите пойти погулять, то пожалуйста, выходите гулять",
-        img: "/images/Desert.jpg"
-      }, ]
+      items:[]
     }
   },
   methods: {}

@@ -36,7 +36,7 @@
 <script>
 export default {
   created() {
-    this.$axios.$get("/api/article").then((res) => {
+    this.$axios.$get("/api/news").then((res) => {
       console.log(res.article)
       return this.items = res.article
     })

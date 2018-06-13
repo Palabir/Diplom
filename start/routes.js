@@ -15,8 +15,13 @@
 
 const Route = use('Route')
 
-Route.get("article", "ArticleController.article").prefix("api")
-Route.post('register', 'UserController.login').prefix('api')
+Route.group(() =>
+    {  
+        Route.get("news", "ArticleController.index")
+
+        Route.post('register', 'UserController.login')
+
+    }).prefix("api")
 
 
 Route.any('*', 'NuxtController.render')

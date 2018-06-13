@@ -14,21 +14,17 @@ export default {
     return {
       items: []
     }
-  },
-  created() {
-    this.getNews()
-  },
-  methods: {
-    getNews() {
-      return this.$axios.$get(`/api/news/`).then(res => {
-        console.log(res.data)
-        this.items = res.data
-      })
-    }
   }
+  // created() {
+  //   this.getNews()
+  // },
+  // methods: {
+  //   getNews() {
+  //     return this.$axios.$get(`/api/news/`).then(res => {
+  //       console.log(res.data)
+  //       this.items = res.data
+  //     })
+  //   }
+  // }
 }
 </script>
-
-<style>
-
-</style>
