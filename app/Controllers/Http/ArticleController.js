@@ -11,6 +11,11 @@ class ArticleController {
         catch (err) {}
         
     }
+    async article({request,params, response}){
+        const {id} = params
+        const article = await Database.from('goods').where('id', id)
+        return {article}
+    }
     async popular({request, response}){
 
         try{

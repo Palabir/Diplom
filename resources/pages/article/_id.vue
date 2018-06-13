@@ -28,26 +28,18 @@
 
 <script>
 export default {
-  async asyncData({
-      error,
-      app,
-      params
-    }) {
-      const item = await app.$axios.$get(`/api/news/${params.article}`).then(({
-        data
-      }) => {
-        return data
-      }).catch(()=>{
-            return error({
-                statusCode: 404,
-                message: 'Not found'
-            })
-      })
-      return {
-        item
-      }
+  created() {
+     this.$axios.$get('/api/article/'+ this.$route.params.id).then((res) => {
+      console.log(res.article)
+        return this.item = res.article
+     })
+
   },
-  methods: {}
+    data(){
+        return{
+            item: [],
+        }
+    }
 }
 </script>
 

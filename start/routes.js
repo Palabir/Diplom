@@ -18,6 +18,7 @@ const Route = use('Route')
 Route.group(() =>
     {  
         Route.get("news", "ArticleController.index")
+        Route.get("article/:id", "ArticleController.article")
 
         Route.post('register', 'UserController.login')
 
