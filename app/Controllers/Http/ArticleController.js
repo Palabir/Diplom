@@ -13,16 +13,12 @@ class ArticleController {
     }
     async article({request,params, response}){
         const {id} = params
-        const article = await Database.from('goods').where('id', id)
+        const article = await Database.from('news').where('id', id)
         return {article}
     }
     async popular({request, response}){
-
-        try{
-            const news = await Database.from('news').where('isPopular', 1)
-            return {news}
-        }
-        catch(err) {}
+        const news = await Database.from('news').where('isPopular', 1)
+        return {news}
     }
 }
 

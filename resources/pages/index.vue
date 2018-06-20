@@ -9,7 +9,7 @@
       <v-flex class="" xs6>
         <div class="container">
           <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
-            <v-card-media :src="item.img" height="150px"></v-card-media>
+            <v-card-media :src="item.image" height="150px"></v-card-media>
             <v-card-title class="title-wrap">{{item.title}}
             </v-card-title>
           </v-card>
@@ -17,9 +17,9 @@
       </v-flex>
       <v-flex class="right-cont" xs4 >
         <div class="f-cont">
-          <div v-for="(item,i) in items" :key="i" class="article" href="" :to="'article/' + item.id">
+          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
             <div class="img">
-              <img :src="item.img" alt="" id="icon-2">
+              <img :src="item.image" alt="" id="icon-2">
             </div>
             <div class="p">
               <p class="r-c-p">{{item.title}}</p>
@@ -34,15 +34,19 @@
 
 <script>
 export default {
-  // created() {
-  //   this.$axios.$get('api/news').then((res) => {
-  //     console.log(res.data)
-  //     return this.items = res.news
-  //   })
-  // },
+  created() {
+    this.$axios.$get("/api/news").then((res) => {
+      return this.items = res.article
+    })
+    this.$axios.$get('api/popular').then((res) => {
+       return this.news = res.news
+     })
+  },
   data() {
     return {
-      items:[]
+      items: [],
+      news: [],
+      page: 1,
     }
   },
   methods: {}
@@ -121,7 +125,7 @@ a:hover {
 
 .card {
   border-radius: 2px;
-  width: 250px;
+  width: 300px;
   margin: 10px;
 }
 .card:hover {

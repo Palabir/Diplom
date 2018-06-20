@@ -19,7 +19,7 @@
     </v-flex>
     <v-flex class="right-cont">
       <div class="f-cont">
-        <a v-for="(item,i) in items" :key="i" class="article" href="" :to="'article/' + item.id">
+        <a v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
           <div class="img">
             <img :src="item.image" alt="" id="icon-2">
           </div>
@@ -37,13 +37,16 @@
 export default {
   created() {
     this.$axios.$get("/api/news").then((res) => {
-      console.log(res.article)
       return this.items = res.article
     })
+    this.$axios.$get('api/popular').then((res) => {
+       return this.news = res.news
+     })
   },
   data() {
     return {
       items: [],
+      news: [],
       page: 1,
     }
   },

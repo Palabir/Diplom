@@ -29,7 +29,8 @@ module.exports = {
     model: 'App/Models/User',
     scheme: 'session',
     uid: 'email',
-    password: 'password'
+    password: 'password',
+    table: 'users'
   },
 
   /*
@@ -50,7 +51,8 @@ module.exports = {
     model: 'App/Models/User',
     scheme: 'basic',
     uid: 'email',
-    password: 'password'
+    password: 'password',
+    table: 'users'
   },
 
   /*
@@ -68,6 +70,7 @@ module.exports = {
     scheme: 'jwt',
     uid: 'email',
     password: 'password',
+    table: 'users',
     options: {
       secret: 'self::app.appKey'
     }

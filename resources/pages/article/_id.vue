@@ -1,52 +1,101 @@
 <template>
 <v-content>
-  <div  class="main-container">
-  <v-layout column class="container-1">
-    <v-flex class="title">
-      <h1>{{item.title}}</h1>
-      <div class="inf">
-        <p class="inf-date">{{item.date}},</p>
-        <p class="inf-tag">{{item.tag}}</p>
-      </div>
-    </v-flex>
-    <v-flex class="image">
-      <img :src="item.image" alt="image">
-    </v-flex>
-    <v-flex class="c-1-article">
-      <h1>{{item.text}}</h1>
-
-    </v-flex>
-    <v-flex share>
-      <h1>SHARE</h1>
-    </v-flex>
-  </v-layout>
-  <v-layout column class="container-2">
-    <h1>BLA BLA BLA</h1>
-  </v-layout></div>
+  <div class="main-container">
+    <v-layout column class="container-1">
+      <v-flex class="title">
+        <h2>{{item.title}}</h2>
+        <div class="inf">
+          <p class="inf-date">{{item.updated_at}},</p>
+          <p class="inf-tag">{{item.category}}</p>
+        </div>
+      </v-flex>
+      <v-flex class="image">
+        <div class="image-img"><img :src="item.image" alt="image"></div>
+      </v-flex>
+      <v-flex class="c-1-article">
+        <p v-html="item.text"></p>
+      </v-flex>
+      <v-flex share>
+        <social-sharing url="https://vuejs.org/" inline-template>
+          <div>
+            <network network="facebook">
+              <i class="fa fa-fw fa-facebook"></i> Facebook
+            </network>
+            <network network="googleplus">
+              <i class="fa fa-fw fa-google-plus"></i> Google +
+            </network>
+            <network network="linkedin">
+              <i class="fa fa-fw fa-linkedin"></i> LinkedIn
+            </network>
+            <network network="pinterest">
+              <i class="fa fa-fw fa-pinterest"></i> Pinterest
+            </network>
+            <network network="reddit">
+              <i class="fa fa-fw fa-reddit"></i> Reddit
+            </network>
+            <network network="twitter">
+              <i class="fa fa-fw fa-twitter"></i> Twitter
+            </network>
+            <network network="vk">
+              <i class="fa fa-vk"></i> VKontakte
+            </network>
+            <network network="weibo">
+              <i class="fa fa-weibo"></i> Weibo
+            </network>
+            <network network="whatsapp">
+              <i class="fa fa-fw fa-whatsapp"></i> Whatsapp
+            </network>
+          </div>
+        </social-sharing>
+      </v-flex>
+    </v-layout>
+    <v-layout column class="container-2">
+      <v-flex class="right-cont" xs4>
+        <div class="f-cont">
+          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
+            <div class="img">
+              <img :src="item.image" alt="" id="icon-2">
+            </div>
+            <div class="p">
+              <p class="r-c-p">{{item.title}}</p>
+            </div>
+          </div>
+        </div>
+      </v-flex>
+    </v-layout>
+  </div>
 </v-content>
 </template>
 
 <script>
+import share from 'vue-social-sharing'
 export default {
   created() {
-     this.$axios.$get('/api/article/'+ this.$route.params.id).then((res) => {
-      console.log(res.article)
-        return this.item = res.article
-     })
+    this.$axios.$get('/api/article/' + this.$route.params.id).then((res) => {
+      return this.item = res.article[0]
+    })
+    this.$axios.$get('api/popular').then((res) => {
+      return this.news = res.news
+    })
 
   },
-    data(){
-        return{
-            item: [],
-        }
+  data() {
+    return {
+      item: [],
+      news: []
     }
+  }
 }
 </script>
 
 <style>
+p a {
+  color: aqua;
+}
+
 .main-container {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   margin: 5%;
 }
 
@@ -56,38 +105,57 @@ export default {
 }
 
 .inf {
-  margin-top: 5px;
+  margin: 14px 0 0;
   display: flex;
   flex-direction: row;
   font-size: 15px;
   color: rgb(180, 180, 180);
 }
 
+.inf p {
+  margin-bottom: 0px;
+}
+
 .container-1 {
-  border: 1px solid;
+  /* border: 1px solid; */
   background-color: #424242;
   /* margin-right: 20px; */
   max-width: 65%;
 }
 
 .title {
-  border: 1px solid;
+  /* border: 1px solid; */
   /* width: 100%; */
   max-width: 100%;
-  margin: 10px 20px;
+  margin: 20px 20px;
+}
+
+.title h2 {
+  margin-bottom: 8px;
+  font-weight: normal;
 }
 
 .image {
   width: 100%;
-  height: 310px;
-  border: 1px solid;
+  height: 100%;
+  /* border: 1px solid; */
   overflow: hidden;
 }
+
+.image-img {
+  height: 310px;
+}
+
 img {
-    margin-top: -30%;
+  /* margin-top: -30%; */
+  width: 100%;
+  /* height: 100%; */
 }
 
 .c-1-article {
-  border: 1px solid;
+  /* border: 1px solid; */
+  margin: 20px;
+  font-weight: normal;
+  font-size: 17px;
 }
 </style>

@@ -17,10 +17,17 @@ const Route = use('Route')
 
 Route.group(() =>
     {  
+        Route.get("popular", "ArticleController.popular")
         Route.get("news", "ArticleController.index")
         Route.get("article/:id", "ArticleController.article")
 
-        Route.post('register', 'UserController.login')
+        Route.post("register", 'UserController.register')
+  
+        Route.post("login", 'UserController.login')
+
+        Route.post("logout", 'UserController.logout')
+
+        Route.post("checkuser", "UserController.checkUser")
 
     }).prefix("api")
 
