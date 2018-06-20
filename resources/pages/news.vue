@@ -1,36 +1,45 @@
 <template>
-<v-container>
-  <v-layout wrap justify-space-around>
-    <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
-      <img src="/images/news.png" alt="news" id="icon">
-      <h2 class="h">Новости</h2>
-    </v-flex>
-    <v-flex class="" xs7>
-      <div class="container">
-        <v-card v-for="(item, i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
-          <v-card-media :src="item.image" height="150px"></v-card-media>
-          <v-card-title class="title-wrap">{{item.title}}
-          </v-card-title>
-        </v-card>
-      </div>
-      <div class="text-xs-center">
-        <v-pagination :length="3" v-model="page"></v-pagination>
-      </div>
-    </v-flex>
-    <v-flex class="right-cont">
-      <div class="f-cont">
-        <a v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
-          <div class="img">
-            <img :src="item.image" alt="" id="icon-2">
+<v-content>
+  <v-container>
+    <v-layout wrap justify-space-around>
+      <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
+        <img src="/images/news.png" alt="news" id="icon">
+        <h2 class="h">Новости</h2>
+      </v-flex>
+      <v-flex class="" xs7>
+        <div class="container">
+          <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
+            <v-card-media :src="item.image" height="150px"></v-card-media>
+            <v-card-title class="title-wrap">{{item.title}}
+            </v-card-title>
+          </v-card>
+        </div>
+      </v-flex>
+      <v-flex class="right-cont">
+        <div class="news-cont">
+          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
+            <div class="img">
+              <img :src="item.image" alt="" id="icon-2">
+            </div>
+            <div class="p">
+              <p class="r-c-p">{{item.title}}</p>
+            </div>
           </div>
-          <div class="p">
-            <p class="r-c-p">{{item.title}}</p>
+        </div>
+        <div class="events-cont">
+          <div v-for="(item,i) in news" :key="i" class="events" href="" :to="'article/' + item.id">
+            <div class="img">
+              <img :src="item.image" alt="" id="icon-2">
+            </div>
+            <div class="p">
+              <p class="r-c-p">{{item.title}}</p>
+            </div>
           </div>
-        </a>
-      </div>
-    </v-flex>
-  </v-layout>
-</v-container>
+        </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</v-content>
 </template>
 
 <script>
@@ -40,8 +49,8 @@ export default {
       return this.items = res.article
     })
     this.$axios.$get('api/popular').then((res) => {
-       return this.news = res.news
-     })
+      return this.news = res.news
+    })
   },
   data() {
     return {
@@ -55,9 +64,12 @@ export default {
 </script>
 
 <style>
+.event-cont {
+  background-color: bisque;
+}
+
 a {
   text-decoration: none;
-  color: white;
 }
 
 a:hover {
@@ -81,25 +93,31 @@ a:hover {
   /* height: 50px; */
 }
 
+.news-cont {
+  background-color: #424242;
+}
+
+.p {}
+
 .r-c-p {
   margin-left: 10px;
   font-size: 15px;
-  color: white;
-}
-
-.r-c-p:hover {
-  color: springgreen;
 }
 
 .article {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 10px;
+  margin: 30px;
+  /* margin-top: 25px; */
   max-width: 400px;
 }
 
 .article:hover {
+  color: mediumspringgreen;
+}
+
+.events:hover {
   color: mediumspringgreen;
 }
 
@@ -110,8 +128,8 @@ a:hover {
 }
 
 .right-cont {
-  margin-top: 25px;
-  background-color: #424242;
+  margin-top: -5px;
+  /* background-color: #424242; */
   border-radius: 5px;
 }
 

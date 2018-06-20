@@ -18,8 +18,15 @@ const Route = use('Route')
 Route.group(() =>
     {  
         Route.get("popular", "ArticleController.popular")
+
         Route.get("news", "ArticleController.index")
         Route.get("article/:id", "ArticleController.article")
+        Route.get("events", "ArticleController.eventIndex")
+        Route.get("article/:id", "ArticleController.event")
+        Route.get("quests", "ArticleController.questIndex")
+        Route.get("article/:id", "ArticleController.quest")
+        Route.get("tests", "ArticleController.testIndex")
+        Route.get("article/:id", "ArticleController.test")
 
         Route.post("register", 'UserController.register')
   

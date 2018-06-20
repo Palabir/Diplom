@@ -6,7 +6,7 @@
         <img src="/images/news.png" alt="news" id="icon">
         <h2 class="h">Новости</h2>
       </v-flex>
-      <v-flex class="" xs6>
+      <v-flex class="" xs7>
         <div class="container">
           <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
             <v-card-media :src="item.image" height="150px"></v-card-media>
@@ -15,7 +15,7 @@
           </v-card>
         </div>
       </v-flex>
-      <v-flex class="right-cont" xs4 >
+      <v-flex class="right-cont" >
         <div class="f-cont">
           <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
             <div class="img">

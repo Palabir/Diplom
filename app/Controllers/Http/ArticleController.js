@@ -4,12 +4,8 @@ const Database = use('Database')
 const Article = use('App/Models/Article')
 class ArticleController {
     async index({request, response}){
-        try {
-            const article = await Database.from('news')
-            return  {article}
-        }
-        catch (err) {}
-        
+         const article = await Database.from('news')
+         return  {article}
     }
     async article({request,params, response}){
         const {id} = params
@@ -19,6 +15,31 @@ class ArticleController {
     async popular({request, response}){
         const news = await Database.from('news').where('isPopular', 1)
         return {news}
+    }
+    async eventIndex({request, response}){
+        const event = await Database.from('events')
+        return  {event}
+    }
+    async event({request,params, response}){
+        const {id} = params
+        const event = await Database.from('event').where('id', id)
+        return {event}
+    }async testIndex({request, response}){
+        const test = await Database.from('tests')
+        return  {test}
+    }
+    async test({request,params, response}){
+        const {id} = params
+        const test = await Database.from('tests').where('id', id)
+        return {test}
+    }async questIndex({request, response}){
+        const quest = await Database.from('quests')
+        return  {quest}
+    }
+    async quest({request,params, response}){
+        const {id} = params
+        const quest = await Database.from('quests').where('id', id)
+        return {quest}
     }
 }
 
