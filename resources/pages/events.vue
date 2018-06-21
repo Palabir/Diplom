@@ -5,7 +5,7 @@
       <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
         <img src="/images/event.png" alt="news" id="icon">
         <h2 class="h">События</h2>
-      </v-flex>q
+      </v-flex>
       <v-flex class="" xs7>
         <div class="container">
           <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">

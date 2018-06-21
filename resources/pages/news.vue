@@ -16,7 +16,11 @@
         </div>
       </v-flex>
       <v-flex class="right-cont">
+
         <div class="news-cont">
+          <div class="r-c-title">
+            <h2>Популярное</h2> 
+          </div>
           <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
             <div class="img">
               <img :src="item.image" alt="" id="icon-2">
@@ -64,6 +68,13 @@ export default {
 </script>
 
 <style>
+.r-c--title {}
+
+.img img {
+  /* height: auto; */
+  width: 300px;
+}
+
 .event-cont {
   background-color: bisque;
 }
@@ -88,12 +99,13 @@ a:hover {
 }
 
 #icon-2 {
-  width: 120px;
-  border-radius: 100px;
+  width: 140px;
+  border-radius: 5px;
   /* height: 50px; */
 }
 
 .news-cont {
+  margin-top: 31px;
   background-color: #424242;
 }
 
@@ -131,6 +143,9 @@ a:hover {
   margin-top: -5px;
   /* background-color: #424242; */
   border-radius: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .h {
