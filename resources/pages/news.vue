@@ -1,43 +1,48 @@
 <template>
 <v-content>
   <v-container>
-    <v-layout wrap justify-space-around>
+    <v-layout wrap justify-space-around class="main-layout">
       <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
         <img src="/images/news.png" alt="news" id="icon">
         <h2 class="h">Новости</h2>
       </v-flex>
-      <v-flex class="" xs7>
+      <v-flex class="cont-cont" xs7>
         <div class="container">
-          <v-card v-for="(item,i) in items" :key="i" class="card" href="" :to="'article/' + item.id">
+          <v-card v-for="(item,i) in items" :key="i" class="card" :to="'article/' + item.id">
             <v-card-media :src="item.image" height="150px"></v-card-media>
-            <v-card-title class="title-wrap">{{item.title}}
-            </v-card-title>
+            <v-card-title class="title-wrap">{{item.title}}</v-card-title>
           </v-card>
         </div>
       </v-flex>
       <v-flex class="right-cont">
-
         <div class="news-cont">
           <div class="r-c-title">
-            <h2>Популярное</h2> 
+            <h2>Популярное</h2>
           </div>
-          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
-            <div class="img">
-              <img :src="item.image" alt="" id="icon-2">
-            </div>
-            <div class="p">
-              <p class="r-c-p">{{item.title}}</p>
-            </div>
+          <div v-for="(item,i) in news" :key="i" class="article" :to="'article/' + item.id">
+            <nuxt-link :to="'article/' + item.id" class="item-link">
+              <div class="img">
+                <img :src="item.image" alt="">
+              </div>
+              <div class="p">
+                <p class="r-c-p">{{item.title}}</p>
+              </div>
+            </nuxt-link>
           </div>
         </div>
         <div class="events-cont">
-          <div v-for="(item,i) in news" :key="i" class="events" href="" :to="'article/' + item.id">
-            <div class="img">
-              <img :src="item.image" alt="" id="icon-2">
-            </div>
-            <div class="p">
-              <p class="r-c-p">{{item.title}}</p>
-            </div>
+          <div class="r-c-title">
+            <h2>Попробуй решить</h2>
+          </div>
+          <div v-for="(item,i) in news" :key="i" class="events" :href="'/'" :to="'article/' + item.id">
+            <nuxt-link :to="'article/' + item.id" class="item-link">
+              <div class="img">
+                <img :src="item.image" alt="">
+              </div>
+              <div class="p">
+                <p class="r-c-p">{{item.title}}</p>
+              </div>
+            </nuxt-link>
           </div>
         </div>
       </v-flex>
@@ -67,16 +72,114 @@ export default {
 }
 </script>
 
-<style>
-.r-c--title {}
-
-.img img {
-  /* height: auto; */
-  width: 300px;
+<style lang='less'>
+.main-layout {
+  .h-cont {
+    margin-left: 75px;
+    height: 50px;
+    align-items: center;
+    .h {
+      margin-left: 5px;
+    }
+    #icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .cont-cont {
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .card {
+        border-radius: 2px;
+        width: 300px;
+        margin: 10px;
+        .title-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          word-wrap: normal;
+        }
+      }
+    }
+  }
+  .right-cont {
+    max-width: 40%;
+    margin-top: -5px;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .news-cont {
+      margin-top: 31px;
+      background-color: #424242;
+      .r-c-title {
+        text-align: center;
+      }
+      .article {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 15px;
+        max-width: 400px;
+        .item-link {
+          display: flex;
+          color: white;
+          .img {
+            margin-right: 6px;
+            width: 140px;
+            img {
+              width: 140px;
+              border-radius: 5px;
+            }
+          }
+          & :hover {
+            color: mediumspringgreen;
+          }
+        }
+      }
+    }
+    .events-cont {
+      margin-top: 31px;
+      background-color: tan;
+      .r-c-title {
+        text-align: center;
+      }
+      .events {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 15px;
+        max-width: 400px;
+        .item-link {
+          display: flex;
+          color: white;
+          .img {
+            margin-right: 6px;
+            width: 140px;
+            img {
+              width: 140px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+    .p {
+      .r-c-p {
+        margin-left: 10px;
+        font-size: 15px;
+        & h2 {
+          margin-left: 35%;
+        }
+      }
+    }
+  }
 }
 
-.event-cont {
-  background-color: bisque;
+.events :hover {
+  color: mediumspringgreen;
 }
 
 a {
@@ -87,82 +190,8 @@ a:hover {
   color: mediumspringgreen;
 }
 
-#icon {
-  width: 50px;
-  height: 50px;
-}
-
-.title-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  word-wrap: normal;
-}
-
-#icon-2 {
-  width: 140px;
-  border-radius: 5px;
-  /* height: 50px; */
-}
-
-.news-cont {
-  margin-top: 31px;
-  background-color: #424242;
-}
-
-.p {}
-
-.r-c-p {
-  margin-left: 10px;
-  font-size: 15px;
-}
-
-.article {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 30px;
-  /* margin-top: 25px; */
-  max-width: 400px;
-}
-
 .article:hover {
   color: mediumspringgreen;
-}
-
-.events:hover {
-  color: mediumspringgreen;
-}
-
-.h-cont {
-  margin-left: 75px;
-  height: 50px;
-  align-items: center;
-}
-
-.right-cont {
-  margin-top: -5px;
-  /* background-color: #424242; */
-  border-radius: 5px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.h {
-  margin-left: 5px;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.card {
-  border-radius: 2px;
-  width: 300px;
-  margin: 10px;
 }
 
 .card:hover {

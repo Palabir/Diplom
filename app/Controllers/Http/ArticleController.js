@@ -2,18 +2,21 @@
 
 const Database = use('Database')
 const Article = use('App/Models/Article')
+const Quests = 6
+
 class ArticleController {
     async index({request, response}){
-         const article = await Database.from('news')
-         return  {article}
+         const article = await Database.from('article').where('category', Quests)
+         const category = await Database.from('categories').where('id', Quests)
+         return  {article, category}
     }
     async article({request,params, response}){
         const {id} = params
-        const article = await Database.from('news').where('id', id)
+        const article = await Database.from('article').where('id', id)
         return {article}
     }
     async popular({request, response}){
-        const news = await Database.from('news').where('isPopular', 1)
+        const news = await Database.from('article').where('isPopular', 1)
         return {news}
     }
     async eventIndex({request, response}){

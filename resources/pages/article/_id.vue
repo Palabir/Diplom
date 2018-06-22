@@ -5,7 +5,7 @@
       <v-flex class="title">
         <h2>{{item.title}}</h2>
         <div class="inf">
-          <p class="inf-date">{{item.updated_at}},</p>
+          <p class="inf-date">{{item.created_at}},</p>
           <p class="inf-tag">{{item.category}}</p>
         </div>
       </v-flex>
@@ -102,6 +102,11 @@ p a {
 .container-2 {
   width: 300px;
   margin-left: 20px;
+}
+
+.c-1-article image {
+  height: auto;
+  
 }
 
 .inf {
