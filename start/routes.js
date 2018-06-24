@@ -27,6 +27,7 @@ Route.group(() =>
         Route.get("article/:id", "ArticleController.quest")
         Route.get("tests", "ArticleController.testIndex")
         Route.get("article/:id", "ArticleController.test")
+        Route.get("category", "ArticleController.getCategory")
 
         Route.post("register", 'UserController.register')
   
@@ -35,6 +36,12 @@ Route.group(() =>
         Route.post("logout", 'UserController.logout')
 
         Route.post("checkuser", "UserController.checkUser")
+
+        Route.post("addgood","ArticleController.addgood" )
+
+        Route.post("admingoods", "ArticleController.admingoods")
+      
+        Route.post("deladmingood","ArticleController.deladmingood" )
 
     }).prefix("api")
 

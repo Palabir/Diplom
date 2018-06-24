@@ -6,7 +6,7 @@
         <h2>{{item.title}}</h2>
         <div class="inf">
           <p class="inf-date">{{item.created_at}},</p>
-          <p class="inf-tag">{{item.category}}</p>
+          <p class="inf-tag" v-for="(cat, i) in category" :key="i" v-if="(item.category == cat.id)"> {{cat.category}}</p>
         </div>
       </v-flex>
       <v-flex class="image">
@@ -77,12 +77,15 @@ export default {
     this.$axios.$get('api/popular').then((res) => {
       return this.news = res.news
     })
-
+    this.$axios.$get('/api/category').then((res) => {
+      return this.category = res.category
+    })
   },
   data() {
     return {
       item: [],
-      news: []
+      news: [],
+      category: [],
     }
   }
 }
@@ -106,7 +109,6 @@ p a {
 
 .c-1-article image {
   height: auto;
-  
 }
 
 .inf {
@@ -145,10 +147,6 @@ p a {
   height: 100%;
   /* border: 1px solid; */
   overflow: hidden;
-}
-
-.image-img {
-  height: 310px;
 }
 
 img {

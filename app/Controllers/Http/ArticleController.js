@@ -7,8 +7,11 @@ const Quests = 6
 class ArticleController {
     async index({request, response}){
          const article = await Database.from('article').where('category', Quests)
-         const category = await Database.from('categories').where('id', Quests)
-         return  {article, category}
+         return  {article}
+    }
+    async getCategory({request, response}){
+        const category = await Database.from('categories')
+         return {category}
     }
     async article({request,params, response}){
         const {id} = params
@@ -27,7 +30,8 @@ class ArticleController {
         const {id} = params
         const event = await Database.from('event').where('id', id)
         return {event}
-    }async testIndex({request, response}){
+    }
+    async testIndex({request, response}){
         const test = await Database.from('tests')
         return  {test}
     }
@@ -35,14 +39,30 @@ class ArticleController {
         const {id} = params
         const test = await Database.from('tests').where('id', id)
         return {test}
-    }async questIndex({request, response}){
+    }
+    async questIndex({request, response}){
         const quest = await Database.from('quests')
         return  {quest}
     }
+    
     async quest({request,params, response}){
         const {id} = params
         const quest = await Database.from('quests').where('id', id)
         return {quest}
+    }
+    async addgood({request,response}){
+        const {title,text,isPopular,image,category, created_at} = request.all()
+        await Database.from('article').insert({title: title,text: text,isPopular: isPopular, image: image, category: category, created_at: created_at})
+        return 'Статья Добавлена'
+    }
+    async deladmingood({request,response}){
+        const {id} = request.all();
+        await Database.table('article').where('id', id).delete()
+        return 
+    }
+    async admingoods({response}){
+        const goods = await Database.from('article')
+        return {goods} 
     }
 }
 

@@ -23,11 +23,11 @@
 import axios from 'axios'
 export default {
   layout: 'admin',
-  created() {
-    this.$axios.$post('/api/checkuser').then((res) => {
-      return this.status = res.user
-    })
-  },
+  // created() {
+  //   this.$axios.$post('/api/checkuser').then((res) => {
+  //     return this.status = res.user
+  //   })
+  // },
   data() {
     return {
       authUserEmail: '',
@@ -45,7 +45,7 @@ export default {
       }).then((res) => {
         this.status = res.data.status
         if (this.status == true) {
-          this.$router.push('/')
+          this.$router.push('/articles')
           this.isShowAuth = false
         }
       })
