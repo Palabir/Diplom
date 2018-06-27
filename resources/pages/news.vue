@@ -19,7 +19,7 @@
           <div class="r-c-title">
             <h2>Популярное</h2>
           </div>
-          <div v-for="(item,i) in news" :key="i" class="article" :to="'article/' + item.id">
+          <div v-for="(item,i) in news" :key="i" class="article" :to="'article/' + item.id" v-if="(i<3)">
             <nuxt-link :to="'article/' + item.id" class="item-link">
               <div class="img">
                 <img :src="item.image" alt="">

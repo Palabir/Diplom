@@ -5,7 +5,7 @@
       <div class="cont">
         <img class="img" :src="item.image">
         <div class="cont-2">
-          <span class="name">{{item.title}}</span>
+          <span class="title">{{item.title}}</span>
           <span class="price" v-for="(cat, i) in category" :key="i" v-if="(item.category == cat.id)">Категория: {{cat.category}} </span>
           <span class="created_at">Создано: {{item.created_at}} </span>
         </div>
@@ -137,10 +137,10 @@ export default {
     .cont-2 {
       display: flex;
       flex-direction: column;
-      .name {
+      .title {
         font-size: 18px;
         font-weight: 600;
-        color: white;
+        color: black;
         padding-right: 20px;
       }
       .desc {

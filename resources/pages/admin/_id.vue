@@ -55,22 +55,20 @@ export default {
     .title {
       max-width: 100%;
       margin: 20px 20px;
-      .title {
-        h2 {
-          margin-bottom: 8px;
-          font-weight: normal;
-        }
         .inf {
-          margin: 14px 0 0;
+          margin: 14px 0 0; 
           display: flex;
           flex-direction: row;
           font-size: 15px;
-          color: rgb(180, 180, 180);
-          p {
+          // color: rgb(180, 180, 180);
+          & h2 {
+          margin-bottom: 8px;
+          font-weight: normal;
+          & p {
             margin-bottom: 0px;
           }
+          }
         }
-      }
     }
     .image {
       width: 100%;

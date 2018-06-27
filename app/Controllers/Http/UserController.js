@@ -3,8 +3,8 @@
 const Database = use("Database");
 const User = use("App/Models/User");
 const Hash = use("Hash");
-class UserController {
 
+class UserController {
   async register({ request, response }) {
     const user = new User()
     const { email, password } = request.all()
@@ -14,12 +14,16 @@ class UserController {
     return "Ты зареган"
   }
   async login({ request, auth, response }) {
-    const { email, password } = request.all()
-    await auth.attempt(email, password)
+    const { login, password } = request.all()
+    await auth.attempt(login, password)
     const status = true
-    return {status}
+    console.log('Залогинен')
+    return { status }
   }
-
+  async getUser({request, response}){
+    const user = await Database.from('users')
+     return {user}
+}
   async logout({request, response, auth}){
     await auth.logout()
     const status = false
@@ -28,7 +32,11 @@ class UserController {
   
   async checkUser({response,auth}){
     const user = await auth.check()
-    return {user}
+    if(user){
+      return {user}
+    }else{
+    return console.log('Вы не авторизованы')
+    } 
   }
 }
 

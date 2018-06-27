@@ -30,6 +30,8 @@ Route.group(() =>
         Route.get("category", "ArticleController.getCategory")
 
         Route.post("register", 'UserController.register')
+        Route.post("getuser", 'UserController.getUser')
+
   
         Route.post("login", 'UserController.login')
 

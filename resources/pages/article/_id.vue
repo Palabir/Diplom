@@ -15,39 +15,7 @@
       <v-flex class="c-1-article">
         <p v-html="item.text"></p>
       </v-flex>
-      <v-flex share>
-        <social-sharing url="https://vuejs.org/" inline-template>
-          <div>
-            <network network="facebook">
-              <i class="fa fa-fw fa-facebook"></i> Facebook
-            </network>
-            <network network="googleplus">
-              <i class="fa fa-fw fa-google-plus"></i> Google +
-            </network>
-            <network network="linkedin">
-              <i class="fa fa-fw fa-linkedin"></i> LinkedIn
-            </network>
-            <network network="pinterest">
-              <i class="fa fa-fw fa-pinterest"></i> Pinterest
-            </network>
-            <network network="reddit">
-              <i class="fa fa-fw fa-reddit"></i> Reddit
-            </network>
-            <network network="twitter">
-              <i class="fa fa-fw fa-twitter"></i> Twitter
-            </network>
-            <network network="vk">
-              <i class="fa fa-vk"></i> VKontakte
-            </network>
-            <network network="weibo">
-              <i class="fa fa-weibo"></i> Weibo
-            </network>
-            <network network="whatsapp">
-              <i class="fa fa-fw fa-whatsapp"></i> Whatsapp
-            </network>
-          </div>
-        </social-sharing>
-      </v-flex>
+      <!-- <vue-goodshare></vue-goodshare> -->
     </v-layout>
     <v-layout column class="container-2">
       <v-flex class="right-cont" xs4>
@@ -68,7 +36,7 @@
 </template>
 
 <script>
-import share from 'vue-social-sharing'
+// import VueGoodshare from 'vue-goodshare'
 export default {
   created() {
     this.$axios.$get('/api/article/' + this.$route.params.id).then((res) => {
@@ -87,6 +55,9 @@ export default {
       news: [],
       category: [],
     }
+  },
+  components: {
+    // VueGoodshare
   }
 }
 </script>
