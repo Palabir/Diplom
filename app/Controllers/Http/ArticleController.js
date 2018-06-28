@@ -2,11 +2,14 @@
 
 const Database = use('Database')
 const Article = use('App/Models/Article')
-const Quests = 6
+const Quests = 1
+const Events = 3
+const Web = 2
+const Articles = 6
 
 class ArticleController {
     async index({request, response}){
-         const article = await Database.from('article').where('category', Quests)
+         const article = await Database.from('article').where('category', Articles)
          return  {article}
     }
     async getCategory({request, response}){
@@ -22,33 +25,17 @@ class ArticleController {
         const news = await Database.from('article').where('isPopular', 1)
         return {news}
     }
-    async eventIndex({request, response}){
-        const event = await Database.from('events')
-        return  {event}
+    async quests({request, response}){
+        const quests = await Database.from('article').where('category', Quests)
+        return  {quests}
     }
-    async event({request,params, response}){
-        const {id} = params
-        const event = await Database.from('event').where('id', id)
-        return {event}
+    async events({request, response}){
+        const events = await Database.from('article').where('category', Events)
+        return  {events}
     }
-    async testIndex({request, response}){
-        const test = await Database.from('tests')
-        return  {test}
-    }
-    async test({request,params, response}){
-        const {id} = params
-        const test = await Database.from('tests').where('id', id)
-        return {test}
-    }
-    async questIndex({request, response}){
-        const quest = await Database.from('quests')
-        return  {quest}
-    }
-    
-    async quest({request,params, response}){
-        const {id} = params
-        const quest = await Database.from('quests').where('id', id)
-        return {quest}
+    async web({request, response}){
+        const web = await Database.from('article').where('category', Web)
+        return  {web}
     }
     async addgood({request,response}){
         const {title,text,isPopular,image,category, created_at} = request.all()

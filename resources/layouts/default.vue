@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn :to="'/news'">Новости</v-btn>
-        <v-btn :to="'/tests'">Web</v-btn>
+        <v-btn :to="'/web'">Web</v-btn>
         <v-btn :to="'/quests'">Задачи</v-btn>
         <v-btn :to="'/events'">События</v-btn>
       </v-toolbar-items>

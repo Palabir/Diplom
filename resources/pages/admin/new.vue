@@ -1,24 +1,22 @@
 <template>
 <v-container>
-  <form class="formadd" @submit.prevent="add">
-    <v-flex column>
+  <form @submit.prevent="add" class="form-cont">
+    <v-flex >
       <v-text-field v-model="title" id="text" label="Заголовок" required></v-text-field>
-      <v-text-field  label="Текст" ></v-text-field>
-      <vue-editor v-model="text"></vue-editor>
+      <v-text-field v-model="text" id="text" label="Текст статьи" multi-line></v-text-field>
     </v-flex>
     <v-flex xs6>
-      <v-select :items="items" v-model="category" label="Статьи" single-line></v-select>
+      <v-select :items="items" v-model="category" label="Новости" single-line></v-select>
     </v-flex>
-    <!-- <v-checkbox v-model="e1" label="Популярный товар"></v-checkbox> -->
-    <v-text-field v-model="image" label="Путь к картинке /images/.......jpg и поместите картинку в /resources/static/images" required></v-text-field>
-    <v-text-field v-model="created_at" label="Создано в" required></v-text-field>
-    <v-btn type="submit">Добавить товар</v-btn>
+    <v-checkbox v-model="e1" label="Популярно"></v-checkbox>
+    <v-text-field v-model="image" label="Путь к картинке /images/.." required></v-text-field>
+    <v-text-field v-model="created_at" label="Дата"></v-text-field>
+    <v-btn type="submit">Добавить</v-btn>
   </form>
 </v-container>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 export default {
   created() {
     this.$axios.$post('api/admingoods').then((res) => {
@@ -27,34 +25,31 @@ export default {
   },
   data() {
     return {
-      e1: 1,
+      e1: true,
       title: '',
       text: '',
-      image: '',
+      image: '/images/',
       category: '',
       created_at: '',
       goods: [],
       items: [{
-          text: 'Статьи',
-          value: 2
+          text: 'Новости',
+          value: 6
         },
         {
           text: 'Задачки',
-          value: 3
+          value: 1
         },
         {
-          text: 'Тесты',
-          value: 4
+          text: 'Web',
+          value: 2
         },
         {
           text: 'События',
-          value: 5
+          value: 3
         }
       ]
     }
-  },
-  components: {
-    VueEditor
   },
   methods: {
     add: function() {
@@ -69,12 +64,13 @@ export default {
         alert(res)
         location.reload()
       })
-
-    },
+    }
   }
 }
 </script>
 
 <style lang="less">
-
+.form-cont {
+  width: 90%;
+}
 </style>

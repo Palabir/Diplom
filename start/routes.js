@@ -21,16 +21,13 @@ Route.group(() =>
 
         Route.get("news", "ArticleController.index")
         Route.get("article/:id", "ArticleController.article")
-        Route.get("events", "ArticleController.eventIndex")
-        Route.get("article/:id", "ArticleController.event")
-        Route.get("quests", "ArticleController.questIndex")
-        Route.get("article/:id", "ArticleController.quest")
-        Route.get("tests", "ArticleController.testIndex")
-        Route.get("article/:id", "ArticleController.test")
+        Route.get("quests", "ArticleController.quests")
+        Route.get("events", "ArticleController.events")
+        Route.get("web", "ArticleController.web")
         Route.get("category", "ArticleController.getCategory")
 
         Route.post("register", 'UserController.register')
-        Route.post("getuser", 'UserController.getUser')
+        Route.get("getuser", 'UserController.getUser')
 
   
         Route.post("login", 'UserController.login')

@@ -34,7 +34,7 @@
           <div class="r-c-title">
             <h2>Попробуй решить</h2>
           </div>
-          <div v-for="(item,i) in news" :key="i" class="events" :href="'/'" :to="'article/' + item.id">
+          <div v-for="(item,i) in items" :key="i" class="events" :href="'/'" :to="'article/' + item.id">
             <nuxt-link :to="'article/' + item.id" class="item-link">
               <div class="img">
                 <img :src="item.image" alt="">
@@ -54,8 +54,8 @@
 <script>
 export default {
   created() {
-    this.$axios.$get("/api/news").then((res) => {
-      return this.items = res.article
+    this.$axios.$get("/api/quests").then((res) => {
+      return this.items = res.quests
     })
     this.$axios.$get('api/popular').then((res) => {
       return this.news = res.news

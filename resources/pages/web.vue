@@ -4,7 +4,7 @@
     <v-layout wrap justify-space-around class="main-layout">
       <v-flex class="h-cont" xs12 style="display:flex; flex-direction:row;">
         <img src="/images/test.png" alt="news" id="icon">
-        <h2 class="h">Тесты</h2>
+        <h2 class="h">Web</h2>
       </v-flex>
       <v-flex class="cont-cont" xs7>
         <div class="container">
@@ -54,18 +54,22 @@
 <script>
 export default {
   created() {
-    this.$axios.$get("/api/news").then((res) => {
-      return this.items = res.article
+    this.$axios.$get("/api/web").then((res) => {
+      return this.items = res.web
     })
     this.$axios.$get('api/popular').then((res) => {
       return this.news = res.news
     })
+    this.$axios.$get('api/quests').then((res) => {
+      return this.quests = res.quests
+    })
   },
   data() {
     return {
+      quests: [],
       items: [],
       news: [],
-      page: 1,
+      page: 2,
     }
   },
   methods: {}

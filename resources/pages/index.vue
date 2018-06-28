@@ -19,7 +19,7 @@
           <div class="r-c-title">
             <h2>Популярное</h2>
           </div>
-          <div v-for="(item,i) in news" :key="i" class="article" :to="'article/' + item.id">
+          <div v-for="(item,i) in news" :key="i" class="article" :to="'article/' + item.id" v-if="(i<6)">
             <nuxt-link :to="'article/' + item.id" class="item-link">
               <div class="img">
                 <img :src="item.image" alt="">
@@ -34,7 +34,7 @@
           <div class="r-c-title">
             <h2>Попробуй решить</h2>
           </div>
-          <div v-for="(item,i) in news" :key="i" class="events" :href="'/'" :to="'article/' + item.id">
+          <div v-for="(item,i) in quests" :key="i" class="events" :href="'/'" :to="'article/' + item.id" v-if="(i<6)">
             <nuxt-link :to="'article/' + item.id" class="item-link">
               <div class="img">
                 <img :src="item.image" alt="">
@@ -60,9 +60,13 @@ export default {
     this.$axios.$get('api/popular').then((res) => {
       return this.news = res.news
     })
+    this.$axios.$get('api/quests').then((res) => {
+      return this.quests = res.quests
+    })
   },
   data() {
     return {
+      quests: [],
       items: [],
       news: [],
       page: 1,

@@ -15,18 +15,19 @@
       <v-flex class="c-1-article">
         <p v-html="item.text"></p>
       </v-flex>
-      <!-- <vue-goodshare></vue-goodshare> -->
     </v-layout>
     <v-layout column class="container-2">
       <v-flex class="right-cont" xs4>
         <div class="f-cont">
           <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
+          <nuxt-link :to="'article/' + item.id" class="item-link">
             <div class="img">
               <img :src="item.image" alt="" id="icon-2">
             </div>
             <div class="p">
               <p class="r-c-p">{{item.title}}</p>
             </div>
+          </nuxt-link>
           </div>
         </div>
       </v-flex>
@@ -36,7 +37,6 @@
 </template>
 
 <script>
-// import VueGoodshare from 'vue-goodshare'
 export default {
   created() {
     this.$axios.$get('/api/article/' + this.$route.params.id).then((res) => {
@@ -56,8 +56,7 @@ export default {
       category: [],
     }
   },
-  components: {
-    // VueGoodshare
+  components: { 
   }
 }
 </script>
@@ -98,7 +97,7 @@ p a {
   /* border: 1px solid; */
   background-color: #424242;
   /* margin-right: 20px; */
-  max-width: 65%;
+  max-width: 66%;
 }
 
 .title {
@@ -128,8 +127,24 @@ img {
 
 .c-1-article {
   /* border: 1px solid; */
-  margin: 20px;
+  margin: 30px;
   font-weight: normal;
   font-size: 17px;
-}
+  
+} 
+.c-1-article a {
+    color:rgb(59, 143, 238);
+  }
+  .c-1-article a:hover {
+  text-decoration: none;
+    color:aqua;
+  }
+.article  a {
+  text-decoration: none;
+    color:rgb(59, 143, 238);
+  } 
+  .article  a:hover {
+  text-decoration: none;
+    color:aqua;
+  }
 </style>

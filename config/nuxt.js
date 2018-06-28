@@ -46,7 +46,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    '@/plugins/api'
+    '@/plugins/api',
+    // '@/plugins/vue2-editor'
   ],
 
   /*
@@ -70,6 +71,9 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   vendor: [
+    'axios'
+  ],
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

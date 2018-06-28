@@ -8,12 +8,11 @@
       <v-layout class="login-block">
         <v-form @submit.prevent="authButton">
           <v-text-field class="field" v-model="authLogin" label="Логин" required></v-text-field>
-          <v-text-field class="field" v-model="authPassword" label="Пароль" required></v-text-field>
+          <v-text-field class="field" v-model="authPassword" :append-icon="e1 ? 'visibility' : 'visibility_off'" :append-icon-cb="() => (e1 = !e1)" :type="e1 ? 'password' : 'text'" label="Пароль" required></v-text-field>
         </v-form>
       </v-layout>
       <v-layout class="btn-login">
-        <v-btn class="login" @click="login()">Авторизоваться</v-btn>
-        <v-btn class="login" >Авторизоваться</v-btn>
+        <v-btn class="login" @click="loginA()">Авторизоваться</v-btn>
       </v-layout>
     </v-container>
   </div>
@@ -25,9 +24,8 @@ import axios from 'axios'
 export default {
   layout: 'admin',
   created() {
-    this.$axios.$post('/api/getUser').then((res) => {
-      console.log('AAAAAAAAAAAA')
-      return this.status = res.user
+    this.$axios.$get('/api/getUser').then((res) => {
+      return this.user = res.user[0]
     })
     // this.$axios.$post('/api/checkuser').then((res) => {
     //   console.log('AAAAAAAAAAAA')
@@ -36,7 +34,8 @@ export default {
   },
   data() {
     return {
-      status : [],
+      e1: true,
+      user: [],
       authLogin: '',
       authPassword: '',
       userName: '',
@@ -44,40 +43,39 @@ export default {
     }
   },
   methods: {
-    login() {
-      if(status[0].login == this.authLogin && status[0].password == this.authPassword) {
-        console.log('URA')
-      }
+    loginA() {
+      if (this.user.login == this.authLogin && this.user.password == this.authPassword) {
+        document.location.href = "/admin/articles"
+      } else alert("Ошибка авторизации!")
       return null
-    //   return this.$api().post('/api/login', {
-    //     login: this.authLogin,
-    //     password: this.authPassword
-    //   }).then((res) => {
-    //     this.status = res.data.status
-    //     console.log('Вошел')
-    //     if (this.status == true) {
-    //       this.$router.push('/admin')
-    //     }
-    //   })
-    // },
-    // logout: function(){
-    //     return  this.$axios.post('api/logout').then((res) =>{
-    //       this.status = res.data.status
-    //         console.log('Вышел')
-    //       if(this.status == false){
-    //         this.$router.push('/admin')
-    //       }
-    //     })
-    //   }
-  }
+      //   return this.$api().post('/api/login', {
+      //     login: this.authLogin,
+      //     password: this.authPassword
+      //   }).then((res) => {
+      //     this.status = res.data.status
+      //     console.log('Вошел')
+      //     if (this.status == true) {
+      //       this.$router.push('/admin')
+      //     }
+      //   })
+      // },
+      // logout: function(){
+      //     return  this.$axios.post('api/logout').then((res) =>{
+      //       this.status = res.data.status
+      //         console.log('Вышел')
+      //       if(this.status == false){
+      //         this.$router.push('/admin')
+      //       }
+      //     })
+      //   }
+    }
   }
 }
 </script>
 
 <style lang="less">
 .main-main {
-  width: 100%;
-  // background-image: url('/images/back.jpg');
+  width: 100%; // background-image: url('/images/back.jpg');
   height: 100%;
   position: fixed;
   /* top: 0; */
