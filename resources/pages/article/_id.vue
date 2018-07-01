@@ -19,8 +19,8 @@
     <v-layout column class="container-2">
       <v-flex class="right-cont" xs4>
         <div class="f-cont">
-          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'article/' + item.id">
-          <nuxt-link :to="'article/' + item.id" class="item-link">
+          <div v-for="(item,i) in news" :key="i" class="article" href="" :to="'/' + item.id">
+          <nuxt-link :to="'/article/' + item.id" class="item-link">
             <div class="img">
               <img :src="item.image" alt="" id="icon-2">
             </div>
